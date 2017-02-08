@@ -1,0 +1,48 @@
+<h1>{{title}}</h1>
+<ul>
+  <li *ngFor="let contact of contacts"
+      (click)="onSelect(contact)"
+      [class.clicked]="selectedContact !== null">
+    {{ contact.firstName}} {{ contact.lastName}}
+  </li>
+</ul>
+<kendo-grid [data]="contacts"
+            [height]="170">
+  <kendo-grid-column field="firstName" title="First Name">
+  </kendo-grid-column>
+  <kendo-grid-column field="lastName" title="Last Name">
+  </kendo-grid-column>
+  <kendo-grid-column field="phone" title="Phone">
+  </kendo-grid-column>
+  <kendo-grid-column field="email" title="Email">
+  </kendo-grid-column>
+</kendo-grid>
+<contact></contact>
+<button kendoButton (click)="onButtonClick()" [primary]="true">My Kendo UI Button</button>
+
+<kendo-grid
+  [data]="gridView"
+  [skip]="skip"
+  [pageSize]="pageSize"
+  [selectable]="true"
+  [scrollable]="'virtual'"
+  [rowHeight]="36"
+  [height]="370"
+  (pageChange)="pageChange($event)"
+>
+  <kendo-grid-column field="Select" width="50">
+    <template kendoGridCellTemplate kendoGridHeaderTemplate let-dataItem>
+      <input type="checkbox" #selectCheckbox (click)="onRowSelect(dataItem,selectCheckbox.checked)"/>
+    </template>
+  </kendo-grid-column>
+  <kendo-grid-column field="id" [width]="80" title="ID"></kendo-grid-column>
+  <kendo-grid-column field="firstName" title="First Name" [width]="130"></kendo-grid-column>
+  <kendo-grid-column field="lastName" title="Last Name" [width]="130"></kendo-grid-column>
+  <kendo-grid-column field="city" title="City" [width]="130"></kendo-grid-column>
+  <kendo-grid-column field="title" title="Title"></kendo-grid-column>
+  <kendo-grid-column>
+    <template title="select" kendoGridCellTemplate let-dataItem>
+      <button type="button" (click)="onRowClick(dataItem)">Click Me</button>
+    </template>
+  </kendo-grid-column>
+</kendo-grid>
